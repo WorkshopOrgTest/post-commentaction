@@ -1,0 +1,33 @@
+name: Post a comment
+description: Post a comment on a Github PR/Issue
+branding:
+  icon: message-square
+  color: gray-dark
+
+inputs:
+  issue-number:
+    description: Pull request or issue number
+    required: true
+  github-token:
+    description: GitHub token
+    required: false
+    default: ${{ github.token }}
+  body:
+    description: Comment content (user)
+    required: false
+  owner:
+    description: Github owner
+    required: false
+    default: ${{ github.repository_owner }}
+  repository:
+    description: Github repository
+    required: false
+    default: ${{ github.event.repository.name }}  
+
+outputs:
+  finish-time:
+    description: Finish time of the comment
+
+runs:
+  using: node12
+  main: dist/index.js
